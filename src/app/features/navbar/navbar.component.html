@@ -1,0 +1,10 @@
+<mat-toolbar color="primary">
+    <h2>Project Smile</h2>
+    <span class="menu-spacer" style="flex-grow: 1; width: 100%;"></span>
+    <div *ngIf="!isLoggedIn" flex-container class="row no-margin end" stlye="width: 100%;">
+        <button flext-item type="button" class="login-with-google-btn" (click)="onLogin()" #loginRef>
+            Sign in with Google
+        </button>
+    </div>
+</mat-toolbar>
+  

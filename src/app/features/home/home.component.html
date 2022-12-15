@@ -1,0 +1,110 @@
+
+<div flex-container class="column stretch-main stretch-cross no-margin" style="height: 95%">
+    <div flex-item style="flex-grow: 3;">
+        <mat-card style="width: 100%;">
+            <mat-card-title>
+                <h3>Step 1: Upload Anterior Dental Image</h3>
+            </mat-card-title>
+            <mat-card-content>
+                <div flex-container class="row end">
+                    <div flex-item style="flex-grow: 2;">
+                        <div flex-container class="column no-margin">
+                            <div [innerHtml]='msg' *ngIf="msg" style="color: red;"></div>
+                            <input class="form-control" mat-button type="file" (change)="selectFile($event)">
+                        </div>
+                    </div>
+                    <div flex-item flex-container class="column" style="flex-grow: 1;">
+                        <h4 flex-item>Original Image:</h4>
+                        <div flex-item [ngStyle]="getNoImageStyle(url)" class="image-container">
+                            <div *ngIf="!url" flex-container class="column no-margin" style="width: 100%; justify-content: center; align-items: center;">
+                                <p style="color: gray; font-style: italic;">No Image Selected</p>
+                            </div>
+                            
+                            <div *ngIf="url" flex-container class="column no-margin" style="width: 100%; justify-content: center; align-items: center;">
+                                <img #originalImage [src]="url">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </div>
+    <div flex-item style="flex-grow: 3;">
+        <mat-card style="width: 100%;">
+            <mat-card-title>
+                <h3>Step 2: Alter Image</h3>
+            </mat-card-title>
+            <mat-card-content>
+                <div flex-container class="row end">
+                    <div flex-item style="flex-grow: 1;">
+                        <div flex-container class="column">
+                            <div flex-item style="max-width: 45%;">
+                                <p>
+                                    The convolutional neural network only accepts images that are 175x100px and in grayscale.
+                                    Before passing the image to the deployed model we must resize and grayscale
+                                    it.
+                                </p>
+                            </div>
+                            <div flex-item>
+                                <button (click)="alterImage()" [disabled]="!url" mat-button color="primary">
+                                    Alter
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div flex-item flex-container class="column" style="flex-grow: 1; min-width: 43%;">
+                        <h4 flex-item>Altered Image:</h4>
+                        <div flex-item [ngStyle]="getNoImageStyle(alteredImageUrl)" class="image-container">
+                            <div *ngIf="!alteredImageUrl" flex-container class="column no-margin" style="width: 100%; justify-content: center; align-items: center;">
+                                <p style="color: gray; font-style: italic;">Image Not Altered</p>
+                            </div>
+                            <div *ngIf="alteredImageUrl" flex-container class="column no-margin" style="width: 100%; justify-content: center; align-items: center;">
+                                <img id="alteredImage" [src]="alteredImageUrl">
+                            </div>
+                            <div style="display: none" class="canvas-container">
+                                <canvas #myCanvas></canvas>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </div>
+    <div flex-item style="flex-grow: 3;">
+        <mat-card style="width: 100%;">
+            <mat-card-title>
+                <h3>Step 3: Get Diagnosis</h3>
+            </mat-card-title>
+            <mat-card-content>
+                <div flex-container class="row end">
+                    <div flex-item style="flex-grow: 1;">
+                        <div flex-container class="column">
+                            <div flex-item style="max-width: 45%;">
+                                <p>
+                                    Send your dental image to the diagnostic model to learn if you need braces.
+                                </p>
+                            </div>
+                            <div flex-item>
+                                <button (click)="predict()" [disabled]="!alteredImageUrl" mat-button color="primary">
+                                    Predict
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div flex-item flex-container class="column" style="flex-grow: 1; min-width: 43%;">
+                        <h4 flex-item>Diagnosis:</h4>
+                        <div flex-item [ngStyle]="getNoImageStyle(predictionResult)" class="image-container">
+                            <div flex-container class="column no-margin" style="width: 100%; justify-content: center; align-items: center;">
+                                <p *ngIf="predictionResult == null" style="color: gray; font-style: italic;">No Prediction Generated</p>
+                                <p *ngIf="predictionResult == bracesEnum.Braces" style="color: red; font-style: strong;">We Recommend Braces</p>
+                                <p *ngIf="predictionResult == bracesEnum.NoBraces" style="color: green; font-style: strong;">We Do Not Recommend Braces</p>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>

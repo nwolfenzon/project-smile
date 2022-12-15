@@ -1,0 +1,38 @@
+<div flex-container class="row stretch-main stretch-cross no-margin" role="main" style="min-height: 89%; overflow-y: auto">
+    <!-- left gutter -->
+    <div flex-item class="no-margin no-padding" style="flex-grow: 1; min-width: 12%; background-color: lightblue;">
+    </div>
+
+    <!-- main content -->
+    <div flex-item class="no-margin no-padding" style="flex-grow: 6; min-width: 70%;">
+
+        <div flex-container class="column stretch-cross stretch-main no-margin" style="flex-grow: 1;">
+            <div flex-item style="flex-grow: 1;">
+                <mat-card style="width: 100%;">
+                    <mat-card-title>
+                        <h1>About the Project</h1>
+                    </mat-card-title>
+                    <mat-card-content>
+                        <p style="width: 45%;">
+                            With Project Smile, our goal is to help dentist and patients in getting
+                            the right diagnosis for an orthodontics treatment. Through the use of
+                            a predictive model, our goal is to provide certainty on whether or not
+                            an aligner-based treatment would work for a specific patient.
+                        </p>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+            <div flex-item style="flex-grow: 5;">
+                <router-outlet name="main-outlet"></router-outlet>
+            </div>
+        </div>
+    </div>
+
+    <!-- right gutter -->
+    <div flex-item class="no-margin no-padding" style="flex-grow: 1; min-width: 12%; background-color: lightblue;">
+    </div>
+</div>
+
+<div *ngIf="isBusy" class="busy">
+    Loading&#8230;
+</div>

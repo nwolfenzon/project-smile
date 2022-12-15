@@ -1,1 +1,163 @@
 /* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+@mixin flexbox() {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+  }
+  
+  @mixin flex($values) {
+    -webkit-box-flex: $values;
+    -moz-box-flex:  $values;
+    -webkit-flex:  $values;
+    -ms-flex:  $values;
+    flex:  $values;
+  }
+  
+  @mixin order($val) {
+    -webkit-box-ordinal-group: $val;  
+    -moz-box-ordinal-group: $val;     
+    -ms-flex-order: $val;     
+    -webkit-order: $val;  
+    order: $val;
+  }
+  
+  .wrapper {
+    @include flexbox();
+  }
+  
+  .item {
+    @include flex(1 200px);
+    @include order(2);
+  }
+
+[flex-container] {
+    display: flex;
+    padding-top: 3px;
+    padding-right: 3px;
+    padding-bottom: 3px;
+    padding-left: 3px;
+    margin-top: 5px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    margin-left: 5px;
+
+    &.row {
+        flex-direction: row;
+
+        &.start {
+            align-items: flex-start;
+        }
+
+        &.end {
+            align-items: flex-end;
+        }
+
+        &.stretch-main {
+            align-items: stretch;
+        }
+
+        &.left {
+            justify-content: flex-start;
+        }
+
+        &.right {
+            justify-content: flex-end;
+        }
+
+        &.stretch-cross {
+            justify-content: stretch;
+        }
+
+        &.center {
+            align-items: center;
+            justify-content: center;
+        }
+
+        &.center-main {
+            align-items: center;
+        }
+
+        &.center-cross {
+            justify-content: center;
+        }
+    }
+
+    &.column {
+        flex-direction: column;
+
+        &.start {
+            justify-content: flex-start;
+        }
+
+        &.end {
+            justify-content: flex-end;
+        }
+
+        &.stretch-main {
+            justify-content: stretch;
+        }
+
+        &.right {
+            align-items: flex-end;
+        }
+
+        &.left {
+            align-items: flex-start;
+        }
+
+        &.stretch-cross {
+            align-items: stretch;
+        }
+
+        &.center {
+            align-items: center;
+            justify-content: center;
+        }
+
+        &.center-main {
+            justify-content: center;
+        }
+
+        &.center-cross {
+            align-items: center;
+        }
+    }
+
+    &.wrap {
+        flex-wrap: wrap;
+    }
+
+    [flex-item] {
+        display: flex;
+        padding-top: 3px;
+        padding-right: 3px;
+        padding-bottom: 3px;
+        padding-left: 3px;
+        margin-top: 5px;
+        margin-right: 5px;
+        margin-bottom: 5px;
+        margin-left: 5px;
+        
+    }
+
+}
+
+.no-margin {
+    margin-top: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+}
+
+.no-padding {
+    padding-top: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+}
