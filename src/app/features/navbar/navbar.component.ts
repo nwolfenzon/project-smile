@@ -1,4 +1,4 @@
-import { AfterViewInit, ChangeDetectorRef, Component, OnInit, OnDestroy } from '@angular/core';
+import { AfterViewInit, Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { BusyService } from 'src/app/core/services/busy.service';
 import { GoogleApiAuthenticationService } from 'src/app/core/services/google-api-authentication.service';
@@ -15,14 +15,11 @@ export class NavbarComponent implements OnInit, OnDestroy, AfterViewInit {
 
   constructor(
     private auth: GoogleApiAuthenticationService,
-    private busyService: BusyService,
-    private cdr: ChangeDetectorRef) { }
+    private busyService: BusyService) { }
 
   ngOnInit(): void {
     this.isLoggedInSubscription = this.busyService.isLoggedIn$.subscribe(loggedIn => {
-      debugger;
       this.isLoggedIn = loggedIn;
-      // this.cdr.detectChanges();
     });
   }
 
