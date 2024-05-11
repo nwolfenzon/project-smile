@@ -79,20 +79,20 @@ export class HomeComponent implements OnInit, OnDestroy {
 			this.msg = 'You must select an image';
 			return;
 		}
-		
+
 		var mimeType = event.target.files[0].type;
-		
+
 		if (mimeType.match(/image\/*/) == null) {
 			this.msg = "Only images are supported";
 			return;
 		}
-		
+
 		var reader = new FileReader();
 		reader.readAsDataURL(event.target.files[0]);
-		
+
 		reader.onload = (_event) => {
 			this.msg = "";
-			this.url = <string>reader.result; 
+			this.url = <string>reader.result;
 		}
 
 	}
@@ -134,10 +134,10 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   resizeImage(imgToResize: any, width: number = 175, height: number = 100) {
     const canvas: HTMLCanvasElement = document.createElement("canvas");
-    
+
     const myContext: CanvasRenderingContext2D | null = this.myCanvas.nativeElement.getContext("2d");
     const context: CanvasRenderingContext2D | null = canvas.getContext("2d");
-  
+
     this.myCanvas.nativeElement.width = width;
     this.myCanvas.nativeElement.height = height;
 
@@ -169,7 +169,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     let request_data = this.getPredictionData();
     if (access_token) {
 
-      this.busyService.updateIsBusy(true);
+      this.busyService.setIsBusy(true);
 
       var xhr = new XMLHttpRequest();
       xhr.open('POST', this.baseUrl);
@@ -178,9 +178,9 @@ export class HomeComponent implements OnInit, OnDestroy {
       let that = this;
       xhr.onreadystatechange = (e) => {
 
-        that.busyService.updateIsBusy(false);
+        that.busyService.setIsBusy(false);
         if (xhr.readyState === 4 && xhr.status === 200) {
-          
+
           const resp = JSON.parse(xhr.response);
           const pred = resp?.predictions[0]?.dense_1[0];
 

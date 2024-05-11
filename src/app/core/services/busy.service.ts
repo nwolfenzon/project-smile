@@ -15,11 +15,11 @@ export class BusyService {
 
   constructor() { }
 
-  updateIsBusy(val: boolean) {
+  setIsBusy(val: boolean) {
     this._isBusySource.next(val);
   }
 
-  updateIsLoggedIn(val: boolean) {
+  setIsLoggedIn(val: boolean) {
     this._isLoggedInSource.next(val);
   }
 

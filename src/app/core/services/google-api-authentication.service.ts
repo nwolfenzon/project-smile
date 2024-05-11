@@ -7,7 +7,7 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class GoogleApiAuthenticationService {
-  
+
   google: any;
   googleClient: any;
 
@@ -32,10 +32,10 @@ export class GoogleApiAuthenticationService {
       // TODO: Check for successful login response
       if (event) {
         sessionStorage.setItem('access_token', event.access_token);
-        that.busyService.updateIsLoggedIn(true);
+        that.busyService.setIsLoggedIn(true);
       } else {
         sessionStorage.setItem('access_token', undefined);
-        that.busyService.updateIsLoggedIn(false);
+        that.busyService.setIsLoggedIn(false);
       }
   }
 }
