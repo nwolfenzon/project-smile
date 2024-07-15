@@ -1,13 +1,15 @@
-# See http://help.github.com/ignore-files/ for more about ignoring files.
 
 # Compiled output
 /dist
 /tmp
 /out-tsc
 /bazel-out
+**/angular-webpack
+**/babel-webpack
+**/.angular
 
 # Node
-/node_modules
+**/node_modules
 npm-debug.log
 yarn-error.log
 
@@ -19,6 +21,8 @@ yarn-error.log
 *.launch
 .settings/
 *.sublime-workspace
+.vscode
+.editorconfig
 
 # Visual Studio Code
 .vscode/*
@@ -41,5 +45,14 @@ testem.log
 .DS_Store
 Thumbs.db
 
-environments/*
-!environments/environment.default.ts
+# Environment files
+.env
+!.env.example
+environment.*
+!environment.default.*
+
+# Virtual Environment
+.venv/
+
+# Data Files
+**/data/*
